@@ -1,0 +1,19 @@
+version: '3.8'
+
+networks:
+#I prefer crystal has it own separate network.
+  crystal_network:
+    name: 'crystal_network'
+
+services:
+  crystal:
+    image: devnasser/crystal-lang:latest
+    container_name: crystal-lang
+    #Using command we can run or do whatever we want with crystal. 
+    command: crystal run /apps/hello-world/helloworld.cr
+    #------------------
+    networks: 
+      - crystal_network
+    #Represent the local folder which has crystal app source inside it.
+    volumes: 
+      - ./apps:/apps
